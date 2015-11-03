@@ -2,7 +2,6 @@
 //Declaro objeto global
 var miapp = {
 	miVideo:"",
-	miDetener:"",
 	miFoto:"",
 	dataURL:"",
 	micanvas:"",
@@ -11,6 +10,12 @@ var miapp = {
 	//La función iniciar() llama al método getUserMedia en cuanto el documento se ha cargado para tener acceso a la cámara web.
 	//En caso de éxito se ejecuta la función exito()
 	iniciar: function(){
+		
+		console.log(window.innerHeight);
+		console.log(window.innerWidth);
+		
+		document.getElementById("media").width = window.innerWidth;
+		document.getElementById("media").height = window.innerHeight;
 		
 		miapp.micanvas = document.getElementById('canvas');
 		
@@ -28,11 +33,6 @@ var miapp = {
 	//Esta función se ejecuta si el usuario accede a que la app tenga acceso a la cámara web.
 	//Esta función recibe el objeto LocalMediaStream y lo almacena en la variable stream
 	exito: function(stream){
-		
-		//En la variable miDetener se almacena una referencia al elemento con id detener
-		this.miDetener = document.getElementById('detener');
-		//Se añade un detector para el evento onclick en el elemento con id detener
-		this.miDetener.addEventListener('click', function(){miapp.stopstream(stream);});
 		
 		//El vídeo de la cámara web se asigna al elemento <video>
 		
@@ -57,14 +57,6 @@ var miapp = {
 		console.log(e.code);	
 	},
 	
-	//Esta función se ejecuta cuando se hace click en el elemento con id detener, detiene la transmisión
-	stopstream: function(stream){
-		var videoTracks = stream.getVideoTracks();
-		videoTracks[0].stop();
-		//stream.stop(); Este método estará proximamente obsoleto
-		alert('Transmision cancelada');
-	},
-	
 	//Esta función ejecuta el código para tomar una instatánea, cuando se hace click en el elemento con id foto
 	//Se toma el fotograma de vídeo actual y se dibuja en el lienzo, tomando una instantánea
 	instantanea: function(){
@@ -76,6 +68,7 @@ var miapp = {
 		miapp.micontexto.drawImage(this, 0, 0, 320, 240);
 		
 		miapp.dataURL = miapp.micanvas.toDataURL();
+		
 	
 	},
 	
@@ -100,6 +93,7 @@ var miapp = {
 		document.getElementById('descripcion').value="";
 		//miapp.micanvas.width = miapp.micanvas.width;
 		miapp.micontexto.clearRect(0,0,miapp.micanvas.width, miapp.micanvas.height);
+		$('#myModal').modal('hide');
 	}
 };
 //Registramos un detector para el evento onload al objeto Document, para que cuando se haya cargado la página ejecute iniciar()
