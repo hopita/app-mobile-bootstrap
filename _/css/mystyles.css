@@ -62,3 +62,35 @@
 	width: 16px;
     height: 16px;
 }
+
+#alta{
+	font-size:20px;
+}
+
+#cajadatos .list-group-item img{
+	min-width:70px;
+}
+
+#botonaltas{
+	background-color:#000000;
+}
+
+.list-group-item{
+	overflow:hidden;
+}
+
+.botones {
+    position: absolute;
+    top:10px;
+}
+
+.botones button{
+    background-color: #000000;
+    color:#ffffff;
+    border:1px solid;
+}
+
+#home a.thumbnail, #home a.thumbnail:hover,  #home a.thumbnail:focus,  #home a.thumbnail.active{
+	border:none;
+	border-color: #ffffff;
+}

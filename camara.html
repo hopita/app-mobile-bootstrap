@@ -18,11 +18,17 @@
   <body>
     <header class="clearfix navbar navbar-fixed-top navbar-inverse">
 	    <div class="container-fluid">
-		    <ul class="nav navbar nav-justified">
+		    <ul class="nav navbar nav-justified hidden-xs">
 			    <li><a href="index.html">home</a></li>
 			    <li><a href="imagenes.html">imágenes</a></li>
-			    <li class="active"><a href="camara.html">cámara</a></li>
+			    <li class="active"><a href="#">cámara</a></li>
 			    <li><a href="localizacion.html">localización</a></li>
+		    </ul>
+		    <ul class="nav navbar nav-justified visible-xs-block">
+			    <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+			    <li><a href="imagenes.html"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a></li>
+			    <li><a href="#"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></a></li>
+			    <li><a href="localizacion.html"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a></li>
 		    </ul>
 	    </div>
     </header>
@@ -60,8 +66,6 @@
 			
 	</main>
     <script src="_/js/bootstrap.js"></script>
-    <script src="_/js/imagesloader.js"></script>
-    <script src="_/js/masonry.js"></script>
     <script src="_/js/camara.js"></script>
   </body>
 </html>

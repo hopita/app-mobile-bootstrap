@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administración Imágenes</title>
+    <link href="_/css/bootstrap.css" rel="stylesheet">
+    <link href="_/css/mystyles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="clearfix navbar navbar-fixed-top navbar-inverse">
+	    <div class="container-fluid">
+		    <ul class="nav navbar nav-justified hidden-xs">
+			    <li><a href="index.html">home</a></li>
+			    <li class="active"><a href="#">imágenes</a></li>
+			    <li><a href="camara.html">cámara</a></li>
+			    <li><a href="localizacion.html">localización</a></li>
+		    </ul>
+		    <ul class="nav navbar nav-justified visible-xs-block">
+			    <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+			    <li><a href="#"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a></li>
+			    <li><a href="camara.html"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></a></li>
+			    <li><a href="localizacion.html"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a></li>
+		    </ul>
+	    </div>
+    </header>
+	<main>
+		<div class="container-fluid">
+			
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+					        <div id="cajaformulario" class="modal-body">
+								<form name="formulario" enctype="multipart/form-data">
+									<label for="titulo">Título: </label><br>
+									<input type="text" name="titulo" id="titulo"><br>
+									<label for="descripcion">Descripción: </label><br>
+									<textarea type="text" name="descripcion" id="descripcion"></textarea><br>
+									<label for="archivoimagen">Imagen: </label><br>
+									<input type="file" name="archivoimagen" id="archivoimagen"><br>
+									<input type="button" id="grabar" value="Añadir">
+								</form>
+							</div>
+					        
+					       <div class="modal-footer">
+								<div class="col-md-2 pull-right">
+				                	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				                </div>
+				            </div> 
+					    </div>
+				    </div>	
+				</div>
+				
+				<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+					        <div id="cajaformulario" class="modal-body">
+								<form name="formularioeditar" >
+									<input type="hidden" name="idrecord" id="idrecord" value="">
+									<div id="cajaimagen"></div>
+									<label for="tituloeditar">Título: </label><br>
+									<input type="text" name="tituloeditar" id="tituloeditar"><br>
+									<label for="descripcioneditar">Descripción: </label><br>
+									<textarea type="text" name="descripcioneditar" id="descripcioneditar"></textarea><br>
+									<input type="button" id="grabareditar" value="Modificar">
+								</form>
+							</div>
+					        
+					       <div class="modal-footer">
+								<div class="col-md-2 pull-right">
+				                	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				                </div>
+				            </div> 
+					    </div>
+				    </div>	
+				</div>
+			<div id="botonaltas">
+				<button type='button' id="alta" data-toggle="modal" data-target="#myModal">+</button>
+			</div>		
+			<section id="cajadatos">
+				No hay información disponible
+				
+			</section>
+		</div>	
+			
+			
+	</main>
+    <script src="_/js/bootstrap.js"></script>
+    <script src="_/js/imagenes.js"></script>
+  </body>
+</html>
