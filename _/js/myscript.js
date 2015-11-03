@@ -1,1 +1,73 @@
-$(document).ready(function(){function a(a,i){$("#show-previous-image, #show-next-image").show(),a==i?$("#show-next-image").hide():1==i&&$("#show-previous-image").hide()}function i(){var a=$(".content");a.imagesLoaded(function(){a.masonry({itemSelector:".thumb",isAnimated:!0})})}function t(i,t){function e(i){var t=i;o=t.data("image-id"),$("#image-gallery-caption").text(t.data("caption")),$("#image-gallery-title").text(t.data("title")),$("#image-gallery-image").attr("src",t.data("image")),a(m,t.data("image-id"))}var o,n,m=0;$("#show-next-image, #show-previous-image").click(function(){"show-previous-image"==$(this).attr("id")?o--:o++,n=$('[data-image-id="'+o+'"]'),e(n)}),1==i&&$("[data-image-id]").each(function(){m++,$(this).attr("data-image-id",m)}),$(t).on("click",function(){e($(this))})}i(),t(!0,"a.thumbnail")});
+$(document).ready(function(){
+	
+	init_masonry();
+
+    loadGallery(true, 'a.thumbnail');
+
+    //This function disables buttons when needed
+    function disableButtons(counter_max, counter_current){
+        $('#show-previous-image, #show-next-image').show();
+        if(counter_max == counter_current){
+            $('#show-next-image').hide();
+        } else if (counter_current == 1){
+            $('#show-previous-image').hide();
+        }
+    }
+    
+    
+    function init_masonry(){
+	    var $container = $('.content');
+	
+	    $container.imagesLoaded( function(){
+	        $container.masonry({
+	          itemSelector: '.thumb',
+	          isAnimated: true
+	        });
+	    });
+	}
+
+    /**
+     *
+     * @param setIDs        Sets IDs when DOM is loaded. If using a PHP counter, set to false.
+     * @param setClickAttr  Sets the attribute for the click handler.
+     */
+
+    function loadGallery(setIDs, setClickAttr){
+        var current_image,
+            selector,
+            counter = 0;
+
+        $('#show-next-image, #show-previous-image').click(function(){
+            if($(this).attr('id') == 'show-previous-image'){
+                current_image--;
+            } else {
+                current_image++;
+            }
+
+            selector = $('[data-image-id="' + current_image + '"]');
+            updateGallery(selector);
+        });
+
+        function updateGallery(selector) {
+            var $sel = selector;
+            current_image = $sel.data('image-id');
+            $('#image-gallery-caption').text($sel.data('caption'));
+            $('#image-gallery-title').text($sel.data('title'));
+            $('#image-gallery-image').attr('src', $sel.data('image'));
+            disableButtons(counter, $sel.data('image-id'));
+        }
+
+        if(setIDs == true){
+            $('[data-image-id]').each(function(){
+                counter++;
+                $(this).attr('data-image-id',counter);
+            });
+        }
+        $(setClickAttr).on('click',function(){
+            updateGallery($(this));
+        });
+    }
+});
+
+
+

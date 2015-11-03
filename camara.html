@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administración Imágenes</title>
+    <link href="_/css/bootstrap.css" rel="stylesheet">
+    <link href="_/css/mystyles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="clearfix navbar navbar-fixed-top navbar-inverse">
+	    <div class="container-fluid">
+		    <ul class="nav navbar nav-justified">
+			    <li class="active"><a href="#">home</a></li>
+			    <li><a href="imagenes">imágenes</a></li>
+			    <li><a href="camara">cámara</a></li>
+			    <li><a href="localización">localización</a></li>
+		    </ul>
+	    </div>
+    </header>
+	<main>
+		<div class="container-fluid">
+			 <section id="reproductor">
+				<video id='media' width="320" height="240"></video>
+				<nav>
+					<input type='button' id="foto" value="Hacer foto">
+					<input type='button' id="detener" value="Apagar">
+				</nav>
+			</section>
+			<section id="cajaformulario">
+				<form name="formulario" enctype="multipart/form-data">
+					<canvas id="canvas" width="320" height="240"></canvas>
+					<label for="titulo">Título: </label><br>
+					<input type="text" name="titulo" id="titulo"><br>
+					<label for="descripcion">Descripción: </label><br>
+					<textarea type="text" name="descripcion" id="descripcion"></textarea><br>
+					<input type="button" id="grabar" value="Grabar">
+				</form>
+			</section>
+		</div>
+
+
+	</main>
+    <script src="_/js/bootstrap.js"></script>
+    <script src="_/js/imagesloader.js"></script>
+    <script src="_/js/masonry.js"></script>
+    <script src="_/js/camara.js"></script>
+  </body>
+</html>

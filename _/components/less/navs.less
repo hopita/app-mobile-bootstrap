@@ -20,11 +20,16 @@
       position: relative;
       display: block;
       padding: @nav-link-padding;
+      color: @navbar-link-color;
       &:hover,
       &:focus {
         text-decoration: none;
-        background-color: @nav-link-hover-bg;
       }
+      
+    }
+    
+    &.active > a {
+      font-weight:bold;
     }
 
     // Disabled state sets text to gray and nukes hover/tab effects
