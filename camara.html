@@ -19,35 +19,45 @@
     <header class="clearfix navbar navbar-fixed-top navbar-inverse">
 	    <div class="container-fluid">
 		    <ul class="nav navbar nav-justified">
-			    <li class="active"><a href="#">home</a></li>
-			    <li><a href="imagenes">imágenes</a></li>
-			    <li><a href="camara">cámara</a></li>
-			    <li><a href="localización">localización</a></li>
+			    <li><a href="index.html">home</a></li>
+			    <li><a href="imagenes.html">imágenes</a></li>
+			    <li class="active"><a href="camara.html">cámara</a></li>
+			    <li><a href="localizacion.html">localización</a></li>
 		    </ul>
 	    </div>
     </header>
 	<main>
-		<div class="container-fluid">
-			 <section id="reproductor">
-				<video id='media' width="320" height="240"></video>
-				<nav>
-					<input type='button' id="foto" value="Hacer foto">
-					<input type='button' id="detener" value="Apagar">
-				</nav>
-			</section>
-			<section id="cajaformulario">
-				<form name="formulario" enctype="multipart/form-data">
-					<canvas id="canvas" width="320" height="240"></canvas>
-					<label for="titulo">Título: </label><br>
-					<input type="text" name="titulo" id="titulo"><br>
-					<label for="descripcion">Descripción: </label><br>
-					<textarea type="text" name="descripcion" id="descripcion"></textarea><br>
-					<input type="button" id="grabar" value="Grabar">
-				</form>
-			</section>
-		</div>
-
-
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+				        <div id="cajaformulario" class="modal-body">
+							<form name="formulario" enctype="multipart/form-data">
+								<canvas id="canvas" width="320" height="240"></canvas>
+								<label for="titulo">Título: </label><br>
+								<input type="text" name="titulo" id="titulo"><br>
+								<label for="descripcion">Descripción: </label><br>
+								<textarea type="text" name="descripcion" id="descripcion"></textarea><br>
+								<input type="button" id="grabar" value="Grabar">
+							</form>
+						</div>
+				        
+				       <div class="modal-footer">
+							<div class="col-md-2 pull-right">
+			                	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			                </div>
+			            </div> 
+				    </div>
+			    </div>	
+			</div>
+		<section id="reproductor">
+			<video id='media'></video>
+			<nav>
+				<button type='button' id="foto" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal"></button>
+			</nav>
+		</section>
+			
+			
+			
 	</main>
     <script src="_/js/bootstrap.js"></script>
     <script src="_/js/imagesloader.js"></script>
