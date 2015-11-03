@@ -33,3 +33,32 @@
   color:#000000;
 }
 
+#reproductor {
+	position: relative;
+}
+
+#reproductor nav{
+	position: absolute;
+    bottom: 20px;
+    left: 48%;
+    width: 32px;
+    height: 32px;
+    border-radius: 25px;
+    background-color: #080808;
+    border-color: transparent;
+    text-align: center;
+}
+
+#reproductor .btn-xs{
+	width: 20px;
+    height: 20px;
+    background-color: #080808;
+    border-color: white;
+    vertical-align: -webkit-baseline-middle;
+    vertical-align: -moz-baseline-middle;
+}
+
+#reproductor .btn-xs:hover{
+	width: 16px;
+    height: 16px;
+}
