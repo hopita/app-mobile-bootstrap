@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Administración Imágenes</title>
+    <title>Administración Imágenes | Imágenes</title>
     <link href="_/css/bootstrap.css" rel="stylesheet">
     <link href="_/css/mystyles.css" rel="stylesheet">
 
@@ -18,35 +18,33 @@
   <body>
     <header class="clearfix navbar navbar-fixed-top navbar-inverse">
 	    <div class="container-fluid">
-		    <ul class="nav navbar nav-justified hidden-xs">
-			    <li><a href="index.html">home</a></li>
-			    <li class="active"><a href="#">imágenes</a></li>
-			    <li><a href="camara.html">cámara</a></li>
-			    <li><a href="localizacion.html">localización</a></li>
-		    </ul>
-		    <ul class="nav navbar nav-justified visible-xs-block">
-			    <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-			    <li><a href="#"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a></li>
-			    <li><a href="camara.html"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></a></li>
-			    <li><a href="localizacion.html"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a></li>
-		    </ul>
+		    <ul class="nav navbar nav-justified">
+		    	<!--Los iconos se muestran solo en dispositivos pequeños, entonces se esconde el texto-->
+			    <li><a href="index.html"><span class="glyphicon glyphicon-home visible-xs" aria-hidden="true"></span><span class=" hidden-xs">home</span></a></li>
+			    <li class="active"><a href="#"><span class="glyphicon glyphicon-picture visible-xs" aria-hidden="true"></span><span class=" hidden-xs">imágenes</span></a></li>
+			    <li><a href="camara.html"><span class="glyphicon glyphicon-camera visible-xs" aria-hidden="true"></span><span class=" hidden-xs">cámara</span></a></li>
+			    <li><a href="localizacion.html"><span class="glyphicon glyphicon-globe visible-xs" aria-hidden="true"></span><span class=" hidden-xs">localización</span></a></li>			    
+		    </ul>		    
 	    </div>
     </header>
 	<main>
 		<div class="container-fluid">
-			
+			<!--Ventana modal con el formulario de altas, esta ventana se abre cuando se hace click en el botón con id "alta" -->
 			<div class="modal fade" id="altaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				    <div class="modal-dialog">
-				        <div class="modal-content">
-					        <div id="cajaformulario" class="modal-body">
+				        <div class="modal content">
+					        <div class="modal-body">
 								<form name="formulario" enctype="multipart/form-data">
 									<label for="titulo">Título: </label><br>
 									<input type="text" name="titulo" id="titulo"><br>
 									<label for="descripcion">Descripción: </label><br>
 									<textarea type="text" name="descripcion" id="descripcion"></textarea><br>
-									<label for="archivoimagen">Imagen: </label><br>
+									<label for="archivoimagen">Imagen*: </label><br>
 									<input type="file" name="archivoimagen" id="archivoimagen"><br>
-									<input type="button" id="grabar" value="Añadir">
+									<!-- Elemento donde voy a mostrar un mensaje de aviso si se selecciona un archivo que no sea una imagen-->
+									<div id="alerta"></div>
+									<!--Este botón está inactivo hasta que se seleccione una imagen, que es el único dato obligatorio para dar el alta-->
+									<input type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Selecciona una imagen" id="grabar" value="Añadir" disabled="disabled">
 								</form>
 								
 							</div>
@@ -59,11 +57,12 @@
 					    </div>
 				    </div>	
 				</div>
-				
+				<!--fin altaModal-->
+				<!--Ventana modal con el formulario de modificaciones, esta ventana se abre cuando se hace click en el botón de modificación de la imagen en el listado de imágenes.-->
 				<div class="modal fade" id="modificacionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				    <div class="modal-dialog">
 				        <div class="modal-content">
-					        <div id="cajaformulario" class="modal-body">
+					        <div class="modal-body">
 								<form name="formularioeditar" >
 									<input type="hidden" name="idrecord" id="idrecord" value="">
 									<div id="cajaimagen"></div>
@@ -71,7 +70,7 @@
 									<input type="text" name="tituloeditar" id="tituloeditar"><br>
 									<label for="descripcioneditar">Descripción: </label><br>
 									<textarea type="text" name="descripcioneditar" id="descripcioneditar"></textarea><br>
-									<input type="button" id="grabareditar" value="Modificar">
+									<input type="button" class="btn btn-primary" id="grabareditar" value="Modificar">
 								</form>
 							</div>
 					        
@@ -83,9 +82,13 @@
 					    </div>
 				    </div>	
 				</div>
+				<!--fin modificacionModal-->
+				
 			<div id="botonaltas">
+				<!--Este botón lanza la ventana modal del formulario de altas-->
 				<button type='button' id="alta" data-toggle="modal" data-target="#altaModal">+</button>
-			</div>		
+			</div>
+			<!--En este elemento se van a mostrar el listado de imágenes y el botón 'Eliminar todos' generados dinámicamente-->		
 			<section id="cajadatos">
 				No hay información disponible
 				

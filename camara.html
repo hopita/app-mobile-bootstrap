@@ -18,24 +18,21 @@
   <body>
     <header class="clearfix navbar navbar-fixed-top navbar-inverse">
 	    <div class="container-fluid">
-		    <ul class="nav navbar nav-justified hidden-xs">
-			    <li><a href="index.html">home</a></li>
-			    <li><a href="imagenes.html">imágenes</a></li>
-			    <li class="active"><a href="#">cámara</a></li>
-			    <li><a href="localizacion.html">localización</a></li>
-		    </ul>
-		    <ul class="nav navbar nav-justified visible-xs-block">
-			    <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-			    <li><a href="imagenes.html"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a></li>
-			    <li><a href="#"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></a></li>
-			    <li><a href="localizacion.html"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a></li>
+		    <ul class="nav navbar nav-justified">
+		    	<!--Los iconos se muestran solo en dispositivos pequeños, entonces se esconde el texto-->
+			    <li><a href="index.html"><span class="glyphicon glyphicon-home visible-xs" aria-hidden="true"></span><span class=" hidden-xs">home</span></a></li>
+			    <li><a href="imagenes.html"><span class="glyphicon glyphicon-picture visible-xs" aria-hidden="true"></span><span class=" hidden-xs">imágenes</span></a></li>
+			    <li class="active"><a href="#"><span class="glyphicon glyphicon-camera visible-xs" aria-hidden="true"></span><span class=" hidden-xs">cámara</span></a></li>
+			    <li><a href="localizacion.html"><span class="glyphicon glyphicon-globe visible-xs" aria-hidden="true"></span><span class=" hidden-xs">localización</span></a></li>
 		    </ul>
 	    </div>
     </header>
 	<main>
+		<!--Ventana modal con el formulario de altas, esta ventana se abre cuando se hace click en el botón con id "foto" -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			    <div class="modal-dialog">
 			        <div class="modal-content">
+			        	<!-- formulario de grabación de la instantánea tomada-->
 				        <div id="cajaformulario" class="modal-body">
 							<form name="formulario" enctype="multipart/form-data">
 								<canvas id="canvas" width="320" height="240"></canvas>
@@ -54,9 +51,11 @@
 			            </div> 
 				    </div>
 			    </div>	
-			</div>
+		</div>
+		<!--fin myModal-->
 		<section id="reproductor">
 			<video id='media'></video>
+			<!--Botón que lanza la ventana modal con el formularo de alta y al que se le registra un detector para el evento onclick. Al hacer click se hace la foto-->
 			<nav>
 				<button type='button' id="foto" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal"></button>
 			</nav>
