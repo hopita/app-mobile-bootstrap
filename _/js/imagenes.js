@@ -39,7 +39,6 @@ var miapp = {
 		var botoneditar = document.getElementById('grabareditar');
 		botoneditar.addEventListener('click', this.modificaritem);
 		
-		
 		//El evento hide.bs.modal se lanza cuando la ventana(en este caso de alta) se cierra.
 		$('#altaModal').on('hidden.bs.modal',miapp.resetformalta);
 		
@@ -260,16 +259,19 @@ var miapp = {
    eliminarTodos: function(){
    	
 		if (confirm('¿Va a eliminar todos los items,Está seguro?')){
-			for (var f = 0; f < localStorage.length; f++){
-				var clave = localStorage.key(f);
+			//Guardo el total de items en esta variable porque tengo que recorrer el bucle tantas veces como items hay antes de eliminar ninguno
+			var totalInicial = localStorage.length;
+			
+			for (var f = 0; f < totalInicial; f++){
+				//En cada iteración se elimina el primer item
+				var clave = localStorage.key(0);
 				//Me aseguro de que el item que voy a eliminar es una imagen (las he grabado con prefijo "img_")
 				var n = clave.indexOf("img_");
-				
 				if (n>-1){
 					localStorage.removeItem(clave);
 				}
 			}
-			mostrar();
+			miapp.mostrar();
 		}
 	}
 	
