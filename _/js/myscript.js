@@ -62,11 +62,16 @@ var miapp = {
 	//Esta función se ejecuta para determinar si alguno de los botones de navegación se tiene que esconder cdo es la primera diapositiva o la última
 	desactivarbotones: function(contador_max, contador_actual){
         $('#imagen-anterior, #imagen-siguiente').show();
-        if(contador_max == contador_actual){
-            $('#imagen-siguiente').hide();
-        } else if (contador_actual == 1){
-            $('#imagen-anterior').hide();
-        }
+        if (contador_max == 1){
+	        $('#imagen-siguiente').hide();
+	        $('#imagen-anterior').hide();
+        }else {
+	        if(contador_max == contador_actual){
+	            $('#imagen-siguiente').hide();
+	        } else if (contador_actual == 1){
+	            $('#imagen-anterior').hide();
+	        }
+        }       
     },
 	
 	//Esta función gestiona la galería para su visualización en la ventana modal, se ejecuta una vez que se ha generado el listado de imágenes
