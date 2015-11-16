@@ -43,7 +43,10 @@ var miapp = {
 		$('#altaModal').on('hidden.bs.modal',miapp.resetformalta);
 		
 		/* Ejecuto la función mostrar()*/
-		this.mostrar();
+		if (localStorage.length > 0){
+			this.mostrar();
+		}
+
 	},
 	
 	/*
@@ -258,18 +261,16 @@ var miapp = {
 	//Esta función se ejecuta al hacer click en el botom 'Eliminar todos'
    eliminarTodos: function(){
    	
-		if (confirm('¿Va a eliminar todos los items,Está seguro?')){
+		if (confirm('Va a eliminar todos los items,Está seguro?')){
 			//Guardo el total de items en esta variable porque tengo que recorrer el bucle tantas veces como items hay antes de eliminar ninguno
 			var totalInicial = localStorage.length;
 			
 			for (var f = 0; f < totalInicial; f++){
+				
 				//En cada iteración se elimina el primer item
 				var clave = localStorage.key(0);
-				//Me aseguro de que el item que voy a eliminar es una imagen (las he grabado con prefijo "img_")
-				var n = clave.indexOf("img_");
-				if (n>-1){
-					localStorage.removeItem(clave);
-				}
+				
+				localStorage.removeItem(clave);
 			}
 			miapp.mostrar();
 		}

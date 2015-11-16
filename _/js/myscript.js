@@ -4,8 +4,12 @@ var miapp = {
 	miefecto:"",
 	
 	//La función iniciar() llama al método mostrar() que listará las imágenes en pantalla
-	iniciar: function(){		
-		this.mostrar();
+	iniciar: function(){
+		//Si no hay ninguna imagen almacenada (porque es la primera vez que se entra en la app 
+		//o porque se han eliminado todas las imágenes a través de la app), se cargan imágenes de muestra	
+		if (localStorage.length == 0) this.resetapp();
+		
+		this.mostrar();		
 	},
 	
 	//Esta función inicializa el plugin masonry, que se ha utilizado para obtener la disposición de la imágenes del listado en pantalla tipo pinterest
@@ -125,6 +129,32 @@ var miapp = {
             actualizagaleria($(this));
         });
     },
+   
+    // Esta función se ejecuta cuando se entra por primera vez a la app 
+    //o bien no hay ninguna imagen en localstorage (porque se han eliminado todas la imágenes) y almacena 2 imágenes de ejemplo
+	resetapp: function(){
+		var arrayImagenesMuestra=['images/amparomegiascastillo.jpg', 'images/beate.jpg', 'images/chupachup.jpg', 'images/foto1.jpg', 'images/pl.jpg', 'images/pragalomo.jpg'];
+		console.log(arrayImagenesMuestra.length);	
+		
+		var datos;
+			
+			for (var f = 0; f < arrayImagenesMuestra.length; f++){
+				
+				var key = "img_" + f;
+				var id= key;
+				//Almaceno en  un objeto todos los datos del item a grabar
+			     datos = {
+				    titulo: "imagen muestra" + f,
+				    descripcion: "imagen muestra" + f + ". Lorem fistrum pecador hasta luego Lucas tiene musho peligro diodenoo condemor mamaar te va a hasé pupitaa pupita mamaar. ",
+				    imagen: arrayImagenesMuestra[f]			
+				};
+				/*
+				 * Con el método JSON.stringify() convierto el objeto javascript a una cadena JSON
+				 * Y llamo al método setItem() para crear un item
+				 */
+				localStorage.setItem(id, JSON.stringify(datos));
+			}
+	},
     
     //Esta función genera el html que pinta el listado de miniaturas en la pantalla.
     mostrar: function(){
