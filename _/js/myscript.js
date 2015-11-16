@@ -6,9 +6,8 @@ var miapp = {
 	//La función iniciar() llama al método mostrar() que listará las imágenes en pantalla
 	iniciar: function(){
 		//Si no hay ninguna imagen almacenada (porque es la primera vez que se entra en la app 
-		//o porque se han eliminado todas las imágenes a través de la app), se cargan imágenes de muestra	
-		if (localStorage.length == 0) this.resetapp();
-		
+		//o porque se han eliminado todas las imágenes a través de la app), se cargan imágenes de muestra
+		if (!this.hayImagenes()) this.resetapp();
 		this.mostrar();		
 	},
 	
@@ -192,6 +191,25 @@ var miapp = {
 		miapp.miefecto =sessionStorage.getItem('efecto');
     	miapp.aplicarefecto(miapp.miefecto);
     	miapp.ponerchecked(miapp.miefecto);    	
+	},
+	
+	//Esta función se ejecuta para comprobar si en localStorage hay almacenadas imágenes de la app.
+	//La clave de las imágenes de la app emplieza por img_
+	hayImagenes: function(){
+		//En esta variable almaceno el númeo de imágenes de la app que hay en localStorage
+		var numeroImagenes=0;
+		
+		for (var f = 0; f < localStorage.length; f++){
+			var clave = localStorage.key(f);
+			//Compruebo que el tem que estoy leyendo es una imagen de la app, si es así aumento en uno el contador de imágenes
+			var n = clave.indexOf("img_");
+			if (n>-1){
+				numeroImagenes++;			
+			}
+		}
+		//Si hay imágenes devuelvo true y si no false
+		if (numeroImagenes > 0) return true;
+		else return false;
 	}
 };
 //Registramos un detector para el evento onload al objeto Document, para que cuando se haya cargado la página ejecute iniciar()
