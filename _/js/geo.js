@@ -10,13 +10,15 @@ var miapp = {
     HIGHACCURACY: true,
     
     iniciar: function(){
+    	//Si el navegador soporta geolocalización ejecuto damePosicion()
 		if((miapp.geo = miapp.dameGeoLocalizacion())) {
         	miapp.damePosicion();
         } else {
            alert('Tu navegador no soporta geolocalización');
         }
 	},
-
+	
+	//Compruebo que el navegador soporta geolocalización
     dameGeoLocalizacion: function() {
 		try {
         	if( !! navigator.geolocation ) return navigator.geolocation;
@@ -26,7 +28,19 @@ var miapp = {
           	return undefined;
        }
     },
-
+    
+    //Esta función se ejecuta una vez que se comprueba que el navegador soporta geolocation.
+    damePosicion: function() {
+    	//Obtengo la ubicación del dispositivo, cada vez que el dispositiov cambia(watchPosition)
+    	//Cada 200mls. se ejecutará mostrarMapa(), si al cabo de este tiempo no se obtiene información se ejecuta errores()
+            miapp.control = miapp.geo.watchPosition(miapp.mostrarMapa, miapp.errores, {
+                enableHighAccuracy: miapp.HIGHACCURACY,
+                maximumAge: miapp.MAXIMUM_AGE,
+                timeout: miapp.TIMEOUT
+            });
+      },
+	
+	//Esta función muestra el mapa de google con los datos que se le mandan cada 20mls.
     mostrarMapa: function(position) {
             var lat = position.coords.latitude;
             var lon = position.coords.longitude;
@@ -56,7 +70,7 @@ var miapp = {
                 miapp.marcador.setMap(miapp.mapa);
             }
         },
-
+	//Esta función se ejecuta si falla el envío de información mediante watchPosition
     errores: function(error) {
            miapp.cancelaPosicion();
             switch(error.code) {
@@ -73,19 +87,11 @@ var miapp = {
                     alert('Geolocalización devolvió un error de código desonocido: ' + error.code);
             }
        },
-
+	//Esta función cancela watchPosition
     cancelaPosicion: function() {
             if(miapp.control) miapp.geo.clearWatch(miapp.control);
             miapp.control = null;
-       },
-
-    damePosicion: function() {
-            miapp.control = miapp.geo.watchPosition(miapp.mostrarMapa, miapp.errores, {
-                enableHighAccuracy: miapp.HIGHACCURACY,
-                maximumAge: miapp.MAXIMUM_AGE,
-                timeout: miapp.TIMEOUT
-            });
-       }
+       }	
         
 };
 //Registramos un detector para el evento onload al objeto Document, para que cuando se haya cargado la página ejecute iniciar()
